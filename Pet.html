@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Traffic</title>
+		<style>
+			.light{
+				background:grey;
+				height:100px;
+				width:150px;
+				margin:10px;
+				text-align:center;
+				padding-top:50px;
+				border-radius:50%;
+			}
+			
+			.text{
+				color:white;
+				font-size:40px;
+				
+			}
+		
+		</style>
+	</head>
+	<body>
+		
+			<h2 class="light" id="red">
+				<span class="text"><span>
+			</h2>
+			<h2 class="light" id="yellow">
+				<span class="text"><span></h2>
+			<h2 class="light" id="green">
+				<span class="text"><span></h2>
+			<script>
+				red = document.getElementById('red')
+				yellow = document.getElementById('yellow')
+				green = document.getElementById('green')
+				red.style.background = 'red';
+				counter = 10
+				wait = 3
+				setInterval(function(){
+					if(red.style.background == "red"){
+						if(wait <= 0){
+							showCountDown(red,counter);
+							if(counter <= 0){
+								red.style.background = "grey"
+								yellow.style.background = "yellow";
+								wait = 3
+								removeCountDown(red);
+							}
+							counter--
+						}
+						wait--
+					}
+					if(yellow.style.background == "yellow"){
+						if(wait <= 0){
+							yellow.style.background = "grey"
+							green.style.background = "green";
+							wait = 3
+							counter = 10
+						}
+						wait--
+						
+					}
+					if(green.style.background == "green"){
+						if(wait <= 0){
+							showCountDown(green,counter);
+							if(counter <= 0){
+								green.style.background = "grey"
+								red.style.background = "red";
+								counter = 11
+								wait = 3
+								removeCountDown(green);
+							}
+							counter--
+						}
+						wait--
+					}
+					
+				},1000);
+				function showCountDown(element,counter){
+					//console.log(element.getElementsByClassName('text')[0])
+					element.getElementsByClassName('text')[0].innerHTML = counter;
+				}
+				function removeCountDown(element){
+					//console.log(element.getElementsByClassName('text')[0])
+					element.getElementsByClassName('text')[0].innerHTML = '';
+				}
+				//counter = 10;
+				
+				
+				
+			</script>
+		
+	</body>
+</html>
